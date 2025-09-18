@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Southern Scheduler</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="page-header">
+        <div class="branding">
+            <h1>Southern Scheduler</h1>
+            <span class="tagline">Plan a perfect semester with drag-and-drop course blocks</span>
+        </div>
+        <div class="header-actions">
+            <button type="button" class="ghost-button" id="resetBoard" aria-label="Clear scheduled courses">
+                Reset Planner
+            </button>
+        </div>
+    </header>
+
+    <main class="app">
+        <aside class="panel catalog-panel" aria-label="Course catalog">
+            <div class="panel-header">
+                <h2>Course Catalog</h2>
+                <p>Drag any course below onto the weekly planner.</p>
+            </div>
+            <div class="catalog-search">
+                <input type="search" id="catalogFilter" placeholder="Filter by keyword" aria-label="Filter courses" />
+            </div>
+            <div id="courseCatalog" class="catalog-list" aria-live="polite"></div>
+        </aside>
+
+        <section class="panel planner-panel" aria-label="Weekly planner">
+            <div class="panel-header">
+                <h2>Weekly Planner</h2>
+                <p id="boardHelp">Drop courses to instantly block out their meeting times.</p>
+            </div>
+            <div id="scheduleBoard" class="schedule-board" aria-describedby="boardHelp" tabindex="0"></div>
+        </section>
+
+        <aside class="panel detail-panel" aria-label="Course details">
+            <div class="panel-header">
+                <h2>Course Details</h2>
+            </div>
+            <div id="courseDetails" class="details-card empty">
+                <p>Select a course card or scheduled block to see more information.</p>
+            </div>
+        </aside>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
