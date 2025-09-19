@@ -341,12 +341,12 @@ body {
 }
 
 .course-meetings {
-.course-info-line {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--text-soft);
 }
 
-    font-size: 0.85rem;
+.course-info-line {
+    font-size: 0.75rem;
     color: var(--text-soft);
 }
 
@@ -472,56 +472,46 @@ body {
 }
 
 .schedule-groups {
-    padding: 1.6rem;
+    padding: 1.25rem;
     display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    align-items: start;
+    gap: 1rem;
 }
 
-.schedule-group {
+.schedule-lane {
     background: rgba(148, 163, 184, 0.12);
     border-radius: var(--radius-md);
-    padding: 1rem 1.15rem 1.25rem;
+    padding: 0.75rem 0.9rem 0.9rem;
     display: grid;
-    gap: 1rem;
-    min-height: 240px;
+    gap: 0.6rem;
 }
 
-.schedule-group header h3 {
+.schedule-lane header h3 {
     margin: 0;
-    font-size: 1.1rem;
-}
-
-.schedule-columns {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
-
-.schedule-day h4 {
-    margin: 0 0 0.45rem;
-    font-size: 0.95rem;
-    color: var(--text-soft);
-    letter-spacing: 0.02em;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
+    color: var(--text-soft);
 }
 
-.schedule-day-list {
-    min-height: 180px;
-    background: rgba(255, 255, 255, 0.65);
-    border-radius: var(--radius-sm);
+.schedule-lane-list {
+    min-height: 140px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 12px;
     border: 1px dashed rgba(148, 163, 184, 0.6);
-    padding: 0.75rem;
+    padding: 0.5rem;
     display: grid;
-    gap: 0.75rem;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(160px, 1fr);
+    gap: 0.5rem;
+    overflow-x: auto;
 }
 
-.schedule-day-list.empty::after {
+.schedule-lane-list.empty::after {
     content: "Drop classes here";
     color: var(--text-soft);
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     text-align: center;
+    align-self: center;
 }
 
 .course-block {
