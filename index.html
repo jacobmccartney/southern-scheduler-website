@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Southern Scheduler</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="page-header">
+        <div class="branding">
+            <h1>Southern Scheduler</h1>
+            <span class="tagline">Curate the perfect semester with flexible filters and drag-and-drop planning.</span>
+        </div>
+        <div class="header-actions">
+            <button type="button" class="ghost-button" id="resetBoard" aria-label="Clear scheduled courses">
+                Reset Planner
+            </button>
+        </div>
+    </header>
+
+    <main class="app">
+        <section class="planner-controls" aria-label="Course controls">
+            <div class="control-layout">
+                <div class="control-stack">
+                    <section class="control-card search-panel" aria-labelledby="searchTitle">
+                        <div class="panel-header">
+                            <h2 id="searchTitle">Find a Course</h2>
+                        </div>
+                        <div class="panel-body">
+                            <label class="sr-only" for="catalogFilter">Search courses</label>
+                            <input type="search" id="catalogFilter" placeholder="ex. MATH 1441" autocomplete="off" />
+                        </div>
+                    </section>
+
+                    <section class="control-card campus-panel" aria-labelledby="campusTitle">
+                        <div class="panel-header">
+                            <h2 id="campusTitle">Select Campus</h2>
+                        </div>
+                        <div class="panel-body">
+                            <div class="campus-options" role="listbox" aria-label="Campuses">
+                                <button type="button" class="campus-pill" data-campus="Statesboro" aria-pressed="false">
+                                    Statesboro
+                                </button>
+                                <button type="button" class="campus-pill" data-campus="Armstrong" aria-pressed="false">
+                                    Armstrong
+                                </button>
+                                <button type="button" class="campus-pill" data-campus="Online" aria-pressed="false">
+                                    Online
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <section class="control-card filter-panel" aria-labelledby="filterTitle">
+                    <div class="panel-header">
+                        <h2 id="filterTitle">Filters</h2>
+                    </div>
+                    <div class="panel-body filters">
+                        <label class="filter-toggle">
+                            <input type="checkbox" id="filterNoEight" />
+                            <span>No 8:00am</span>
+                        </label>
+
+                        <div class="filter-toggle" data-filter-group>
+                            <label>
+                                <input type="checkbox" id="filterSpacingToggle" />
+                                <span>Class Spacing</span>
+                            </label>
+                            <fieldset class="spacing-options" id="spacingOptions" disabled>
+                                <legend class="sr-only">Preferred time between classes</legend>
+                                <label>
+                                    <input type="radio" name="spacing" value="15-or-less" />
+                                    <span>15 minutes or less</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="spacing" value="15-30" />
+                                    <span>15-30 minutes</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="spacing" value="30-60" />
+                                    <span>30 minutes - 1 hour</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="spacing" value="60-120" />
+                                    <span>1-2 hours</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="spacing" value="120-plus" />
+                                    <span>2+ hours</span>
+                                </label>
+                            </fieldset>
+                        </div>
+
+                        <label class="filter-toggle">
+                            <input type="checkbox" id="filterOnline" />
+                            <span>Online only</span>
+                        </label>
+
+                        <label class="filter-toggle">
+                            <input type="checkbox" id="filterInPerson" />
+                            <span>In person only</span>
+                        </label>
+
+                        <label class="filter-toggle">
+                            <input type="checkbox" id="filterNoFriday" />
+                            <span>No Fridays</span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="control-card results-panel" aria-labelledby="resultsTitle">
+                    <div class="panel-header">
+                        <h2 id="resultsTitle">Search Results</h2>
+                    </div>
+                    <div class="panel-body results-body">
+                        <div id="courseCatalog" class="catalog-list" role="list" aria-live="polite"></div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="schedule-section" aria-labelledby="scheduleTitle">
+            <div class="panel-header schedule-header">
+                <h2 id="scheduleTitle">My Schedule</h2>
+            </div>
+            <div id="scheduleBoard" class="schedule-groups" aria-live="polite">
+                <div class="schedule-lane" data-slot="MW">
+                    <header>
+                        <h3>Mon / Wed</h3>
+                    </header>
+                    <div class="schedule-lane-list schedule-day-list" data-slot="MW" data-slot-list role="list"></div>
+                </div>
+                <div class="schedule-lane" data-slot="TR">
+                    <header>
+                        <h3>Tue / Thu</h3>
+                    </header>
+                    <div class="schedule-lane-list schedule-day-list" data-slot="TR" data-slot-list role="list"></div>
+                </div>
+                <div class="schedule-lane" data-slot="F">
+                    <header>
+                        <h3>Friday</h3>
+                    </header>
+                    <div class="schedule-lane-list schedule-day-list" data-slot="F" data-slot-list role="list"></div>
+                </div>
+            </div>
+            <div class="schedule-footer">
+                <button type="button" class="primary-button" id="doneButton">Done</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
