@@ -260,15 +260,31 @@ function appendMoreDetail(list, label, value) {
 }
 
 function insertBlockSorted(dayList, block) {
-    const targetMinutes = Number(block.dataset.startMinutes ?? 0);
-    const children = Array.from(dayList.children);
-    const insertBeforeNode = children.find((child) => {
-        return Number(child.dataset.startMinutes ?? 0) > targetMinutes;
-    });
-    if (insertBeforeNode) {
-        dayList.insertBefore(block, insertBeforeNode);
+    // Find the correct time slot to append the block
+    const startMinutes = Number(block.dataset.startMinutes ?? 0);
+    // Convert minutes to hour string (e.g., 8:00, 9:00, ...)
+    const hour = Math.floor(startMinutes / 60);
+    const minute = startMinutes % 60;
+    const timeLabel = `${String(hour).padStart(2, '0')}:${minute === 0 ? '00' : String(minute).padStart(2, '0')}`;
+
+    // Find the .time-slot element with matching label
+    const timeSlots = dayList.querySelectorAll('.time-slot');
+    let slotEl = null;
+    for (const slot of timeSlots) {
+        if (slot.textContent.trim() === timeLabel) {
+            slotEl = slot;
+            break;
+        }
+    }
+    // If not found, default to first slot
+    if (!slotEl && timeSlots.length) {
+        slotEl = timeSlots[0];
+    }
+    if (slotEl) {
+        slotEl.appendChild(block);
     } else {
-        dayList.append(block);
+        // fallback: append to dayList
+        dayList.appendChild(block);
     }
 }
 

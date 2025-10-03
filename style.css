@@ -1,3 +1,33 @@
+.time-slots {
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    gap: 0.2rem;
+    height: 100%;
+}
+.time-slot {
+    background: rgba(148, 163, 184, 0.08);
+    border-radius: 8px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.course-card.wiggle {
+    animation: wiggleCard 0.5s ease;
+}
+
+@keyframes wiggleCard {
+    0% { transform: rotate(0deg) scale(1); }
+    15% { transform: rotate(-3deg) scale(1.04); }
+    30% { transform: rotate(3deg) scale(1.04); }
+    45% { transform: rotate(-3deg) scale(1.04); }
+    60% { transform: rotate(3deg) scale(1.04); }
+    75% { transform: rotate(-3deg) scale(1.04); }
+    100% { transform: rotate(0deg) scale(1); }
+}
 :root {
     --page-bg: #f6f9fc;
     --panel-bg: #ffffff;
@@ -73,11 +103,89 @@ body {
     outline: none;
 }
 
+
 .app {
+    padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+.main-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.controls-column {
+    flex: 0 0 320px;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
-    padding: clamp(1.5rem, 3vw, 3rem);
+    gap: 1.5rem;
+}
+
+.catalog-column {
+    flex: 0 0 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.schedule-column {
+    flex: 1 1 0;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.schedule-groups {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    background: var(--panel-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 1rem;
+}
+
+.schedule-lane {
+    display: flex;
+    flex-direction: column;
+    background: #f8fafc;
+    border-radius: var(--radius-md);
+    min-height: 500px;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+    border: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.schedule-lane header {
+    background: #e0e7ef;
+    padding: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+}
+
+.schedule-lane-list {
+    flex: 1;
+    padding: 0.5rem;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.catalog-list {
+    min-height: 400px;
+    background: #f8fafc;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    padding: 0.5rem;
+    box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .planner-controls {

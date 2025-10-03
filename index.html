@@ -20,135 +20,160 @@
     </header>
 
     <main class="app">
-        <section class="planner-controls" aria-label="Course controls">
-            <div class="control-layout">
-                <div class="control-stack">
-                    <section class="control-card search-panel" aria-labelledby="searchTitle">
-                        <div class="panel-header">
-                            <h2 id="searchTitle">Find a Course</h2>
+        <div class="main-layout">
+            <aside class="controls-column">
+                <section class="control-card search-panel" aria-labelledby="searchTitle">
+                    <div class="panel-header">
+                        <h2 id="searchTitle">Find a Course</h2>
+                    </div>
+                    <div class="panel-body">
+                        <label class="sr-only" for="catalogFilter">Search courses</label>
+                        <input type="search" id="catalogFilter" placeholder="ex. MATH 1441" autocomplete="off" />
+                    </div>
+                </section>
+                <section class="control-card campus-panel" aria-labelledby="campusTitle">
+                    <div class="panel-header">
+                        <h2 id="campusTitle">Select Campus</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="campus-options" role="listbox" aria-label="Campuses">
+                            <button type="button" class="campus-pill" data-campus="Statesboro" aria-pressed="false">Statesboro</button>
+                            <button type="button" class="campus-pill" data-campus="Armstrong" aria-pressed="false">Armstrong</button>
+                            <button type="button" class="campus-pill" data-campus="Online" aria-pressed="false">Online</button>
                         </div>
-                        <div class="panel-body">
-                            <label class="sr-only" for="catalogFilter">Search courses</label>
-                            <input type="search" id="catalogFilter" placeholder="ex. MATH 1441" autocomplete="off" />
-                        </div>
-                    </section>
-
-                    <section class="control-card campus-panel" aria-labelledby="campusTitle">
-                        <div class="panel-header">
-                            <h2 id="campusTitle">Select Campus</h2>
-                        </div>
-                        <div class="panel-body">
-                            <div class="campus-options" role="listbox" aria-label="Campuses">
-                                <button type="button" class="campus-pill" data-campus="Statesboro" aria-pressed="false">
-                                    Statesboro
-                                </button>
-                                <button type="button" class="campus-pill" data-campus="Armstrong" aria-pressed="false">
-                                    Armstrong
-                                </button>
-                                <button type="button" class="campus-pill" data-campus="Online" aria-pressed="false">
-                                    Online
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
+                    </div>
+                </section>
                 <section class="control-card filter-panel" aria-labelledby="filterTitle">
                     <div class="panel-header">
                         <h2 id="filterTitle">Filters</h2>
                     </div>
                     <div class="panel-body filters">
                         <label class="filter-toggle">
-                            <input type="checkbox" id="filterNoEight" />
-                            <span>No 8:00am</span>
-                        </label>
-
+                        <label class="filter-toggle"><input type="checkbox" id="filterNoEight" /><span>No 8:00am</span></label>
                         <div class="filter-toggle" data-filter-group>
-                            <label>
-                                <input type="checkbox" id="filterSpacingToggle" />
-                                <span>Class Spacing</span>
-                            </label>
+                            <label><input type="checkbox" id="filterSpacingToggle" /><span>Class Spacing</span></label>
                             <fieldset class="spacing-options" id="spacingOptions" disabled>
                                 <legend class="sr-only">Preferred time between classes</legend>
-                                <label>
-                                    <input type="radio" name="spacing" value="15-or-less" />
-                                    <span>15 minutes or less</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="spacing" value="15-30" />
-                                    <span>15-30 minutes</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="spacing" value="30-60" />
-                                    <span>30 minutes - 1 hour</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="spacing" value="60-120" />
-                                    <span>1-2 hours</span>
-                                </label>
-                                <label>
-                                    <input type="radio" name="spacing" value="120-plus" />
-                                    <span>2+ hours</span>
-                                </label>
+                                <label><input type="radio" name="spacing" value="15-or-less" /><span>15 minutes or less</span></label>
+                                <label><input type="radio" name="spacing" value="15-30" /><span>15-30 minutes</span></label>
+                                <label><input type="radio" name="spacing" value="30-60" /><span>30 minutes - 1 hour</span></label>
+                                <label><input type="radio" name="spacing" value="60-120" /><span>1-2 hours</span></label>
+                                <label><input type="radio" name="spacing" value="120-plus" /><span>2+ hours</span></label>
                             </fieldset>
                         </div>
-
-                        <label class="filter-toggle">
-                            <input type="checkbox" id="filterOnline" />
-                            <span>Online only</span>
-                        </label>
-
-                        <label class="filter-toggle">
-                            <input type="checkbox" id="filterInPerson" />
-                            <span>In person only</span>
-                        </label>
-
-                        <label class="filter-toggle">
-                            <input type="checkbox" id="filterNoFriday" />
-                            <span>No Fridays</span>
-                        </label>
+                        <label class="filter-toggle"><input type="checkbox" id="filterOnline" /><span>Online only</span></label>
+                        <label class="filter-toggle"><input type="checkbox" id="filterInPerson" /><span>In person only</span></label>
+                        <label class="filter-toggle"><input type="checkbox" id="filterNoFriday" /><span>No Fridays</span></label>
                     </div>
                 </section>
-
+            </aside>
+            <section class="catalog-column">
                 <section class="control-card results-panel" aria-labelledby="resultsTitle">
                     <div class="panel-header">
-                        <h2 id="resultsTitle">Search Results</h2>
+                        <h2 id="resultsTitle">Course Catalog</h2>
                     </div>
                     <div class="panel-body results-body">
                         <div id="courseCatalog" class="catalog-list" role="list" aria-live="polite"></div>
                     </div>
                 </section>
-            </div>
-        </section>
-
-        <section class="schedule-section" aria-labelledby="scheduleTitle">
-            <div class="panel-header schedule-header">
-                <h2 id="scheduleTitle">My Schedule</h2>
-            </div>
-            <div id="scheduleBoard" class="schedule-groups" aria-live="polite">
-                <div class="schedule-lane" data-slot="MW">
-                    <header>
-                        <h3>Mon / Wed</h3>
-                    </header>
-                    <div class="schedule-lane-list schedule-day-list" data-slot="MW" data-slot-list role="list"></div>
+            </section>
+            <section class="schedule-column">
+                <div class="panel-header schedule-header">
+                    <h2 id="scheduleTitle">My Schedule</h2>
                 </div>
-                <div class="schedule-lane" data-slot="TR">
-                    <header>
-                        <h3>Tue / Thu</h3>
-                    </header>
-                    <div class="schedule-lane-list schedule-day-list" data-slot="TR" data-slot-list role="list"></div>
+                <div id="scheduleBoard" class="schedule-groups" aria-live="polite">
+                    <div class="schedule-lane" data-slot="M">
+                        <header><h3>M</h3></header>
+                        <div class="schedule-lane-list schedule-day-list" data-slot="M" data-slot-list role="list">
+                            <!-- Time slots -->
+                            <div class="time-slots">
+                                <div class="time-slot">8:00</div>
+                                <div class="time-slot">9:00</div>
+                                <div class="time-slot">10:00</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">13:00</div>
+                                <div class="time-slot">14:00</div>
+                                <div class="time-slot">15:00</div>
+                                <div class="time-slot">16:00</div>
+                                <div class="time-slot">17:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="schedule-lane" data-slot="T">
+                        <header><h3>T</h3></header>
+                        <div class="schedule-lane-list schedule-day-list" data-slot="T" data-slot-list role="list">
+                            <div class="time-slots">
+                                <div class="time-slot">8:00</div>
+                                <div class="time-slot">9:00</div>
+                                <div class="time-slot">10:00</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">13:00</div>
+                                <div class="time-slot">14:00</div>
+                                <div class="time-slot">15:00</div>
+                                <div class="time-slot">16:00</div>
+                                <div class="time-slot">17:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="schedule-lane" data-slot="W">
+                        <header><h3>W</h3></header>
+                        <div class="schedule-lane-list schedule-day-list" data-slot="W" data-slot-list role="list">
+                            <div class="time-slots">
+                                <div class="time-slot">8:00</div>
+                                <div class="time-slot">9:00</div>
+                                <div class="time-slot">10:00</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">13:00</div>
+                                <div class="time-slot">14:00</div>
+                                <div class="time-slot">15:00</div>
+                                <div class="time-slot">16:00</div>
+                                <div class="time-slot">17:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="schedule-lane" data-slot="Tr">
+                        <header><h3>Tr</h3></header>
+                        <div class="schedule-lane-list schedule-day-list" data-slot="Tr" data-slot-list role="list">
+                            <div class="time-slots">
+                                <div class="time-slot">8:00</div>
+                                <div class="time-slot">9:00</div>
+                                <div class="time-slot">10:00</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">13:00</div>
+                                <div class="time-slot">14:00</div>
+                                <div class="time-slot">15:00</div>
+                                <div class="time-slot">16:00</div>
+                                <div class="time-slot">17:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="schedule-lane" data-slot="F">
+                        <header><h3>F</h3></header>
+                        <div class="schedule-lane-list schedule-day-list" data-slot="F" data-slot-list role="list">
+                            <div class="time-slots">
+                                <div class="time-slot">8:00</div>
+                                <div class="time-slot">9:00</div>
+                                <div class="time-slot">10:00</div>
+                                <div class="time-slot">11:00</div>
+                                <div class="time-slot">12:00</div>
+                                <div class="time-slot">13:00</div>
+                                <div class="time-slot">14:00</div>
+                                <div class="time-slot">15:00</div>
+                                <div class="time-slot">16:00</div>
+                                <div class="time-slot">17:00</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="schedule-lane" data-slot="F">
-                    <header>
-                        <h3>Friday</h3>
-                    </header>
-                    <div class="schedule-lane-list schedule-day-list" data-slot="F" data-slot-list role="list"></div>
+                <div class="schedule-footer">
+                    <button type="button" class="primary-button" id="doneButton">Done</button>
                 </div>
-            </div>
-            <div class="schedule-footer">
-                <button type="button" class="primary-button" id="doneButton">Done</button>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>

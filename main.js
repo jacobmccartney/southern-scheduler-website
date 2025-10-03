@@ -24,8 +24,33 @@ function init() {
     setCatalogHandlers({ onAddCourse: addCourseToSchedule });
     setScheduleChangeCallback(refreshCatalog);
     attachGlobalEvents();
+    attachScheduleLaneDragEvents();
     updateAllDayListStates();
     refreshCatalog();
+function attachScheduleLaneDragEvents() {
+    // Attach dragover and drop events to each day column
+    for (const [day, laneEl] of dayLists.entries()) {
+        laneEl.addEventListener("dragover", (event) => {
+            event.preventDefault();
+            event.dataTransfer.dropEffect = "copy";
+            laneEl.classList.add("drag-over");
+        });
+        laneEl.addEventListener("dragleave", () => {
+            laneEl.classList.remove("drag-over");
+        });
+        laneEl.addEventListener("drop", (event) => {
+            event.preventDefault();
+            laneEl.classList.remove("drag-over");
+            const course = parseCourseFromDrag(event);
+            if (!course) {
+                showToast("Unsupported drag item.");
+                return;
+            }
+            // Optionally, you could pass the day to addCourseToSchedule if needed
+            addCourseToSchedule(course);
+        });
+    }
+}
 }
 
 function attachGlobalEvents() {

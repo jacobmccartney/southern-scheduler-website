@@ -140,6 +140,14 @@ function handleCardDragStart(event, course) {
     const target = event.currentTarget;
     if (target instanceof HTMLElement) {
         target.classList.add("dragging");
+        target.classList.add("wiggle");
+        target.addEventListener(
+            "animationend",
+            () => {
+                target.classList.remove("wiggle");
+            },
+            { once: true }
+        );
         target.addEventListener(
             "dragend",
             () => {
